@@ -1,8 +1,12 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:shop/main.dart'; // Import main.dart if necessary for global access
-import '../models/product.dart'; // Import product.dart for Product model
-import '../screens/product_detail_screen.dart'; // Import ProductDetailScreen for navigation
+import 'package:shop/models/product.dart'; // Import product.dart for Product model
+import 'package:shop/screens/product_detail_screen.dart'; // Import ProductDetailScreen for navigation
+import 'package:shop/constants/app_strings.dart'; // Import your constants file
 
+// ignore: use_key_in_widget_constructors
 class FavoriteScreen extends StatefulWidget {
   static List<Product> favoriteItems =
       []; // List to hold favorite items globally
@@ -34,8 +38,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Favorite Items',
+        title: const Text(
+          AppStrings.favoriteItemsTitle,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -74,7 +78,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                 width: 70,
                               ),
                             ),
-                            SizedBox(width: 30),
+                            const SizedBox(width: 30),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,16 +86,16 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                   // Product name
                                   Text(
                                     FavoriteScreen.favoriteItems[index].name,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(height: 4),
+                                  const SizedBox(height: 4),
                                   // Quantity and price
                                   Text(
                                     '${FavoriteScreen.favoriteItems[index].quantity}, Price',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.grey,
                                     ),
                                   ),
@@ -107,14 +111,14 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                     // Product price
                                     Text(
                                       '\$${FavoriteScreen.favoriteItems[index].price.toStringAsFixed(2)}',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    SizedBox(width: 10),
+                                    const SizedBox(width: 10),
                                     // Arrow icon indicating more details or action
-                                    Icon(
+                                    const Icon(
                                       Icons.arrow_forward_ios,
                                       size: 16,
                                       color: Colors.grey,
@@ -135,17 +139,21 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 },
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // Button to add all favorite items to cart
+            // ignore: sized_box_for_whitespace
             Container(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed:
                     FavoriteScreen.favoriteItems.isEmpty ? null : _addAllToCart,
-                child: Text('Add All To Cart',
-                    style: TextStyle(
-                      color: Colors.white,
-                    )),
+                // ignore: sort_child_properties_last
+                child: const Text(
+                  AppStrings.addToCartAllTitle,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xff8E97FD),
                   padding:

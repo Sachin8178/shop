@@ -1,9 +1,13 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors, duplicate_ignore
+
 import 'package:flutter/material.dart';
 import 'package:shop/main.dart'; // Assuming this contains MainScreen
 import 'package:shop/models/product.dart';
 import 'package:shop/screens/product_detail_screen.dart';
 import 'package:shop/widgets/product_card.dart';
+import '../constants/app_strings.dart';
 
+// ignore: use_key_in_widget_constructors
 class HomeScreen extends StatelessWidget {
   final List<Product> products = [
     Product(
@@ -60,7 +64,7 @@ class HomeScreen extends StatelessWidget {
       price: 4.99,
       description: 'Fresh pulses.',
       image: 'assets/groceries_images/pulses.png',
-      backgroundColor: Color(0xffF8A44C).withOpacity(0.2),
+      backgroundColor: const Color(0xffF8A44C).withOpacity(0.2),
     ),
     Product(
       name: 'Rice',
@@ -68,7 +72,7 @@ class HomeScreen extends StatelessWidget {
       price: 4.99,
       description: 'Fresh rice.',
       image: 'assets/groceries_images/rice.png',
-      backgroundColor: Color(0xff8E97FD).withOpacity(0.2),
+      backgroundColor: const Color(0xff8E97FD).withOpacity(0.2),
     ),
   ];
 
@@ -93,10 +97,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Shop'),
+        title: const Text('Shop'),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -104,28 +108,29 @@ class HomeScreen extends StatelessWidget {
             Container(
               height: 200,
               width: double.infinity,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 245, 244, 242),
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 245, 244, 242),
                 image: DecorationImage(
                   image: AssetImage('assets/product_images/banner.png'),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
 
             // Exclusive Offer Section
-            buildSection('Exclusive Offer', () => buildProductList(products)),
-            SizedBox(height: 16),
+            buildSection(AppStrings.productDetailToggleText,
+                () => buildProductList(products)),
+            const SizedBox(height: 16),
 
             // Best Selling Section
-            buildSection(
-                'Best Selling', () => buildProductList(bestSellingProducts)),
-            SizedBox(height: 16),
+            buildSection(AppStrings.bestSellingTitle,
+                () => buildProductList(bestSellingProducts)),
+            const SizedBox(height: 16),
 
             // Groceries Section
             buildGroceriesSection(),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
 
             // More Products List
             buildProductList(moreProducts),
@@ -141,7 +146,7 @@ class HomeScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SectionTitle(title: title, onSeeAll: () => handleSeeAllTap(title)),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         buildContent(),
       ],
     );
@@ -149,6 +154,7 @@ class HomeScreen extends StatelessWidget {
 
   // Function to build the list of products
   Widget buildProductList(List<Product> productList) {
+    // ignore: sized_box_for_whitespace
     return Container(
       height: 250,
       child: ListView.builder(
@@ -163,7 +169,7 @@ class HomeScreen extends StatelessWidget {
 
   // Function to build a product card widget
   Widget buildProductCard(BuildContext context, Product product) {
-    return Container(
+    return SizedBox(
       width: 150,
       child: ProductCard(
         product: product,
@@ -183,17 +189,17 @@ class HomeScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Groceries',
+              const Text(
+                AppStrings.categoriesTitle,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               GestureDetector(
-                onTap: () => handleSeeAllTap('Groceries'),
-                child: Text(
-                  'See all',
+                onTap: () => handleSeeAllTap(AppStrings.categoriesTitle),
+                child: const Text(
+                  AppStrings.seeAllText,
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.blue,
@@ -203,8 +209,8 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 8),
-        Container(
+        const SizedBox(height: 8),
+        SizedBox(
           height: 100,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -223,8 +229,8 @@ class HomeScreen extends StatelessWidget {
     return Container(
       width: 220, // Increase width slightly for a more rectangular appearance
       height: 80, // Adjust height for a more compact layout
-      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-      padding: EdgeInsets.all(8.0),
+      margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+      padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: product.backgroundColor ?? Colors.grey[200],
@@ -233,7 +239,7 @@ class HomeScreen extends StatelessWidget {
             color: Colors.grey.withOpacity(0.3),
             spreadRadius: 2,
             blurRadius: 5,
-            offset: Offset(0, 2),
+            offset: const Offset(0, 2),
           ),
         ],
       ),
@@ -243,7 +249,7 @@ class HomeScreen extends StatelessWidget {
           Container(
             width: 60,
             height: 60,
-            margin: EdgeInsets.only(right: 12.0),
+            margin: const EdgeInsets.only(right: 12.0),
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(product.image),
@@ -255,7 +261,7 @@ class HomeScreen extends StatelessWidget {
           Expanded(
             child: Text(
               product.name,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
                 color: Colors.black87,
@@ -270,6 +276,7 @@ class HomeScreen extends StatelessWidget {
   // Function to handle "See all" tap actions
   void handleSeeAllTap(String sectionName) {
     // Implement your logic for handling "See all" tap
+    // ignore: avoid_print
     print('See all tapped for $sectionName');
     // Optionally navigate or perform action
   }
@@ -300,12 +307,12 @@ class SectionTitle extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           GestureDetector(
             onTap: onSeeAll,
-            child: Text(
-              'See all',
+            child: const Text(
+              AppStrings.seeAllText,
               style: TextStyle(fontSize: 16, color: Colors.blue),
             ),
           ),

@@ -1,3 +1,5 @@
+// ignore_for_file: sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import 'package:shop/main.dart'; // Import main.dart for accessing cartItems
 import '../models/product.dart'; // Import Product model
@@ -9,11 +11,13 @@ class CartScreen extends StatefulWidget {
   CartScreen({super.key}); // Use static cartItems from MainScreen
 
   @override
+  // ignore: library_private_types_in_public_api
   _CartScreenState createState() => _CartScreenState();
 }
 
 class _CartScreenState extends State<CartScreen> {
-  bool _agreedToTerms = false;
+  // ignore: unused_field
+  final bool _agreedToTerms = false;
 
   // Calculate total price of items in the cart
   double getTotalPrice() {
@@ -29,11 +33,11 @@ class _CartScreenState extends State<CartScreen> {
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
             return SingleChildScrollView(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Checkout',
                     style: TextStyle(
                       fontSize: 20,
@@ -41,8 +45,8 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                   ),
 
-                  SizedBox(height: 20),
-                  Divider(thickness: 1, color: Color(0xFFE2E2E2)),
+                  const SizedBox(height: 20),
+                  const Divider(thickness: 1, color: Color(0xFFE2E2E2)),
                   buildCheckoutOption(
                     title: 'Delivery Method',
                     subtitle: 'Select method',
@@ -51,19 +55,19 @@ class _CartScreenState extends State<CartScreen> {
                       // Navigate to delivery method selection screen
                     },
                   ),
-                  Divider(thickness: 1, color: Color(0xFFE2E2E2)),
+                  const Divider(thickness: 1, color: Color(0xFFE2E2E2)),
                   buildCheckoutOption(
                     title: 'Payment',
                     subtitle: '',
                     amount: '',
-                    icon: ImageIcon(
+                    icon: const ImageIcon(
                       AssetImage('assets/icon_images/card.png'),
                     ),
                     onTap: () {
                       // Navigate to payment method selection screen
                     },
                   ),
-                  Divider(thickness: 1, color: Color(0xFFE2E2E2)),
+                  const Divider(thickness: 1, color: Color(0xFFE2E2E2)),
                   buildCheckoutOption(
                     title: 'Promo code',
                     subtitle: 'Pick discount',
@@ -72,7 +76,7 @@ class _CartScreenState extends State<CartScreen> {
                       // Navigate to promo code selection screen
                     },
                   ),
-                  Divider(thickness: 1, color: Color(0xFFE2E2E2)),
+                  const Divider(thickness: 1, color: Color(0xFFE2E2E2)),
                   buildCheckoutOption(
                     title: 'Total Cost',
                     subtitle: '',
@@ -81,11 +85,11 @@ class _CartScreenState extends State<CartScreen> {
                       // Navigate to total cost details screen
                     },
                   ),
-                  Divider(thickness: 1, color: Color(0xFFE2E2E2)),
-                  SizedBox(height: 20),
+                  const Divider(thickness: 1, color: Color(0xFFE2E2E2)),
+                  const SizedBox(height: 20),
                   // Terms and Conditions text
                   RichText(
-                    text: TextSpan(
+                    text: const TextSpan(
                       text: 'By placing an order you agree to our \n',
                       style: TextStyle(color: Color(0xFF7C7C7C)),
                       children: [
@@ -105,7 +109,7 @@ class _CartScreenState extends State<CartScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   // Button to place order
                   Center(
                     child: ElevatedButton(
@@ -117,7 +121,7 @@ class _CartScreenState extends State<CartScreen> {
                           ),
                         );
                       },
-                      child: Padding(
+                      child: const Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                         child: Text(
@@ -126,8 +130,8 @@ class _CartScreenState extends State<CartScreen> {
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                        minimumSize: Size(double.infinity, 60),
-                        backgroundColor: Color(0xff8E97FD),
+                        minimumSize: const Size(double.infinity, 60),
+                        backgroundColor: const Color(0xff8E97FD),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -154,7 +158,7 @@ class _CartScreenState extends State<CartScreen> {
     return ListTile(
       title: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           color: Color.fromARGB(255, 103, 101, 101), // Main text color
         ),
       ),
@@ -163,18 +167,18 @@ class _CartScreenState extends State<CartScreen> {
         children: [
           if (icon != null) ...[
             icon, // Icon widget for payment option
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
           ],
           Text(
             amount,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
-              color: const Color.fromARGB(255, 7, 7, 7),
+              color: Color.fromARGB(255, 7, 7, 7),
               fontSize: 15,
             ),
           ),
-          SizedBox(width: 10),
-          Icon(Icons.arrow_forward_ios),
+          const SizedBox(width: 10),
+          const Icon(Icons.arrow_forward_ios),
         ],
       ),
       onTap: onTap,
@@ -185,14 +189,14 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'My Cart',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
       body: widget.cartItems.isEmpty
-          ? Center(
+          ? const Center(
               child:
                   Text('No items in cart'), // Display message if cart is empty
             )
@@ -211,7 +215,7 @@ class _CartScreenState extends State<CartScreen> {
                               direction: DismissDirection.endToStart,
                               background: Container(
                                 alignment: Alignment.centerRight,
-                                padding: EdgeInsets.only(right: 20.0),
+                                padding: const EdgeInsets.only(right: 20.0),
                                 child: Image.asset(
                                   'assets/images/cross.png', // Replace with your cross image path
                                   color: Colors.white,
@@ -240,7 +244,7 @@ class _CartScreenState extends State<CartScreen> {
                                         fit: BoxFit.cover,
                                       ),
                                     ),
-                                    SizedBox(width: 20),
+                                    const SizedBox(width: 20),
                                     Expanded(
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(
@@ -252,23 +256,23 @@ class _CartScreenState extends State<CartScreen> {
                                             // Display product name
                                             Text(
                                               widget.cartItems[index].name,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                                 height:
                                                     1), // Adding space below the product name
                                             // Display quantity and price
                                             Text(
                                               '${widget.cartItems[index].quantity}, Price',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontSize: 14,
                                                 color: Colors.grey,
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                                 height:
                                                     15), // Adding smaller space below the quantity
                                             // Display quantity selector and price
@@ -285,7 +289,7 @@ class _CartScreenState extends State<CartScreen> {
                                                 ),
                                                 Text(
                                                   '\$${widget.cartItems[index].price.toStringAsFixed(2)}',
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     fontSize: 18,
                                                     fontWeight: FontWeight.bold,
                                                   ),
@@ -329,7 +333,7 @@ class _CartScreenState extends State<CartScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Go to Checkout',
                           style: TextStyle(
                             color: Colors.white,
@@ -338,7 +342,7 @@ class _CartScreenState extends State<CartScreen> {
                         ),
                         Text(
                           '\$${getTotalPrice().toStringAsFixed(2)}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold, // Bold text
                           ),
@@ -346,8 +350,8 @@ class _CartScreenState extends State<CartScreen> {
                       ],
                     ),
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size(double.infinity, 60),
-                      backgroundColor: Color(0xff8E97FD),
+                      minimumSize: const Size(double.infinity, 60),
+                      backgroundColor: const Color(0xff8E97FD),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(11),
                       ),
@@ -365,10 +369,12 @@ class QuantitySelector extends StatefulWidget {
   final int initialQuantity;
   final ValueChanged<int> onChanged;
 
+  // ignore: prefer_const_constructors_in_immutables
   QuantitySelector(
       {super.key, required this.initialQuantity, required this.onChanged});
 
   @override
+  // ignore: library_private_types_in_public_api
   _QuantitySelectorState createState() => _QuantitySelectorState();
 }
 
@@ -429,23 +435,24 @@ class _QuantitySelectorState extends State<QuantitySelector> {
             });
           },
           child: Container(
-            padding: EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(4.0),
             decoration: BoxDecoration(
-              border: Border.all(color: Color.fromARGB(255, 225, 224, 224)),
+              border:
+                  Border.all(color: const Color.fromARGB(255, 225, 224, 224)),
               borderRadius: BorderRadius.circular(11),
             ),
             child: Icon(
               Icons.remove,
               color: _decrementTapped
                   ? Colors.green
-                  : Color.fromARGB(255, 160, 159, 159),
+                  : const Color.fromARGB(255, 160, 159, 159),
             ),
           ),
         ),
-        SizedBox(width: 15),
+        const SizedBox(width: 15),
         // Display current quantity
         Text('$_quantity'),
-        SizedBox(width: 15),
+        const SizedBox(width: 15),
         // Button to increment quantity
         GestureDetector(
           onTap: _incrementQuantity,
@@ -465,9 +472,10 @@ class _QuantitySelectorState extends State<QuantitySelector> {
             });
           },
           child: Container(
-            padding: EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(4.0),
             decoration: BoxDecoration(
-              border: Border.all(color: Color.fromARGB(255, 225, 224, 224)),
+              border:
+                  Border.all(color: const Color.fromARGB(255, 225, 224, 224)),
               borderRadius: BorderRadius.circular(11),
             ),
             child: Icon(

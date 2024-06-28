@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, library_private_types_in_public_api, unnecessary_to_list_in_spreads, sort_child_properties_last
+
 import 'package:flutter/material.dart';
 
 class FilterDrawer extends StatefulWidget {
@@ -24,7 +26,7 @@ class _FilterDrawerState extends State<FilterDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -32,20 +34,20 @@ class _FilterDrawerState extends State<FilterDrawer> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Filters',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 IconButton(
-                  icon: Icon(Icons.close),
+                  icon: const Icon(Icons.close),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                 ),
               ],
             ),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               'Categories',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
@@ -61,9 +63,11 @@ class _FilterDrawerState extends State<FilterDrawer> {
                   });
                 },
               );
+              // ignore: duplicate_ignore
+              // ignore: unnecessary_to_list_in_spreads
             }).toList(),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               'Brand',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
@@ -80,16 +84,17 @@ class _FilterDrawerState extends State<FilterDrawer> {
                 },
               );
             }).toList(),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Center(
               child: ElevatedButton(
                 onPressed: () {
                   // Apply filter logic
                 },
-                child: Text('Apply Filter'),
+                child: const Text('Apply Filter'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff8E97FD),
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 25),
+                  backgroundColor: const Color(0xff8E97FD),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 25),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),

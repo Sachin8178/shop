@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import '../models/category.dart';
 import '../widgets/category_grid_item.dart';
 import '../screens/filters_screen.dart';
+import '../constants/app_strings.dart'; // Import your string constants file
 
+// ignore: use_key_in_widget_constructors
 class ExploreScreen extends StatelessWidget {
   // List of categories with names and corresponding images
   final List<Category> categories = [
@@ -35,23 +37,23 @@ class ExploreScreen extends StatelessWidget {
 
   // Define different background colors for each category item
   final List<Color> categoryBackgroundColors = [
-    Colors.orange[200]!,
-    Colors.blue[200]!,
-    Colors.green[200]!,
-    Colors.purple[200]!,
-    Colors.red[200]!,
-    Colors.teal[200]!,
+    Colors.orange[400]!.withOpacity(0.2), // Lighter orange
+    Colors.blue[400]!.withOpacity(0.2), // Lighter blue
+    Colors.green[400]!.withOpacity(0.2), // Lighter green
+    Colors.purple[400]!.withOpacity(0.2), // Lighter purple
+    Colors.red[400]!.withOpacity(0.2), // Lighter red
+    Colors.teal[400]!.withOpacity(0.2),
     // Add more colors as needed
   ];
 
   // Define different border colors for each category item
   final List<Color> categoryBorderColors = [
-    Colors.orange[400]!,
-    Colors.blue[400]!,
-    Colors.green[400]!,
-    Colors.purple[400]!,
-    Colors.red[400]!,
-    Colors.teal[400]!,
+    Colors.orange[400]!.withOpacity(0.2), // Lighter orange
+    Colors.blue[400]!.withOpacity(0.2), // Lighter blue
+    Colors.green[400]!.withOpacity(0.2), // Lighter green
+    Colors.purple[400]!.withOpacity(0.2), // Lighter purple
+    Colors.red[400]!.withOpacity(0.2), // Lighter red
+    Colors.teal[400]!.withOpacity(0.2),
     // Add more colors as needed
   ];
 
@@ -59,21 +61,22 @@ class ExploreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Find Products'), // Title for the app bar
+        title: const Text(AppStrings.findProductsTitle), // Use string constant
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // Search bar section
           Container(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
                 Expanded(
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: 'Search Store', // Placeholder text for search
-                      prefixIcon: Icon(Icons.search), // Search icon
+                      hintText:
+                          AppStrings.searchStoreHint, // Use string constant
+                      prefixIcon: const Icon(Icons.search), // Search icon
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30.0),
                         borderSide: BorderSide.none,
@@ -84,16 +87,16 @@ class ExploreScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 IconButton(
-                  icon: ImageIcon(
+                  icon: const ImageIcon(
                     AssetImage('assets/icon_images/filter.png'),
                   ), // Filter icon button
                   onPressed: () {
                     // Show filter options when filter icon is pressed
                     showModalBottomSheet(
                       context: context,
-                      builder: (context) => FilterBottomSheet(),
+                      builder: (context) => const FilterBottomSheet(),
                     );
                   },
                 ),
@@ -105,7 +108,7 @@ class ExploreScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, // Number of columns in the grid
                   childAspectRatio: 3 / 2, // Aspect ratio of grid items
                   crossAxisSpacing: 10, // Spacing between columns

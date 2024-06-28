@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shop/main.dart';
+import '../constants/app_strings.dart';
 
 class AccountScreen extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
   const AccountScreen({Key? key});
 
   @override
@@ -14,29 +16,29 @@ class AccountScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                const Row(
                   children: [
                     CircleAvatar(
                       backgroundImage: AssetImage(
                           'assets/account_icons/profile.png'), // Replace with your profile image
                       radius: 30,
                     ),
-                    const SizedBox(width: 10),
+                    SizedBox(width: 10),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
                             Text(
-                              'Afsar Hossen',
+                              AppStrings.accountName,
                               style: TextStyle(fontSize: 18),
                             ),
-                            const SizedBox(width: 5),
+                            SizedBox(width: 5),
                             Icon(Icons.edit, size: 16, color: Colors.green),
                           ],
                         ),
                         Text(
-                          'afu****@gmail.com',
+                          AppStrings.accountEmail,
                           style: TextStyle(fontSize: 14, color: Colors.grey),
                         ),
                       ],
@@ -49,7 +51,7 @@ class AccountScreen extends StatelessWidget {
                   leading: Image.asset(
                       'assets/account_icons/Orders.png'), // Replace with your orders icon image
                   title: const Text(
-                    'Orders',
+                    AppStrings.ordersTitle,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios),
@@ -62,7 +64,7 @@ class AccountScreen extends StatelessWidget {
                   leading: Image.asset(
                       'assets/account_icons/My_Details_icon.png'), // Replace with your details icon image
                   title: const Text(
-                    'My Details',
+                    AppStrings.myDetailsTitle,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios),
@@ -75,7 +77,7 @@ class AccountScreen extends StatelessWidget {
                   leading: Image.asset(
                       'assets/account_icons/Delicery_address.png'), // Replace with your delivery address icon image
                   title: const Text(
-                    'Delivery Address',
+                    AppStrings.deliveryAddressTitle,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios),
@@ -88,7 +90,7 @@ class AccountScreen extends StatelessWidget {
                   leading: Image.asset(
                       'assets/account_icons/Payment_methods.png'), // Replace with your payment icon image
                   title: const Text(
-                    'Payment Methods',
+                    AppStrings.paymentMethodsTitle,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios),
@@ -101,7 +103,7 @@ class AccountScreen extends StatelessWidget {
                   leading: Image.asset(
                       'assets/account_icons/Promo_Cord_icon.png'), // Replace with your promo codes icon image
                   title: const Text(
-                    'Promo Codes',
+                    AppStrings.promoCodesTitle,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios),
@@ -114,7 +116,7 @@ class AccountScreen extends StatelessWidget {
                   leading: Image.asset(
                       'assets/account_icons/Bell_icon.png'), // Replace with your notifications icon image
                   title: const Text(
-                    'Notifications',
+                    AppStrings.notificationsTitle,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios),
@@ -127,7 +129,7 @@ class AccountScreen extends StatelessWidget {
                   leading: Image.asset(
                       'assets/account_icons/help_icon.png'), // Replace with your help icon image
                   title: const Text(
-                    'Help',
+                    AppStrings.helpTitle,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios),
@@ -140,7 +142,7 @@ class AccountScreen extends StatelessWidget {
                   leading: Image.asset(
                       'assets/account_icons/about_icon.png'), // Replace with your about icon image
                   title: const Text(
-                    'About',
+                    AppStrings.aboutTitle,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios),
@@ -164,11 +166,11 @@ class AccountScreen extends StatelessWidget {
                 );
               },
               icon: const Icon(Icons.logout, color: Colors.green),
-              label: Row(
+              label: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text(
-                    'Log Out',
+                    AppStrings.logOutButtonTitle,
                     style: TextStyle(
                       color: Colors.green,
                       fontWeight: FontWeight.bold,

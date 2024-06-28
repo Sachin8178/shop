@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants/app_strings.dart'; // Import your constants
+
 class FilterBottomSheet extends StatefulWidget {
   const FilterBottomSheet({super.key});
 
@@ -62,7 +64,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  'Filters',
+                  AppStrings.filtersTitle,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 IconButton(
@@ -76,7 +78,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             const SizedBox(height: 20),
             // Categories section
             const Text(
-              'Categories',
+              AppStrings.categoriesTitle,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
@@ -101,7 +103,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             const SizedBox(height: 20),
             // Brands section
             const Text(
-              'Brands',
+              AppStrings.brandsTitle,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
@@ -137,7 +139,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 child: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   child: Text(
-                    'Apply Filter',
+                    AppStrings.applyFilterButtonTitle,
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),

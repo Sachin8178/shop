@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import '../models/category.dart';
 
@@ -34,7 +36,8 @@ class CategoryGridItem extends StatelessWidget {
                 padding:
                     const EdgeInsets.all(8.0), // Add padding around the image
                 child: ClipRRect(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(15)),
                   child: Image.asset(
                     category.image,
                     fit: BoxFit.contain,
@@ -45,11 +48,11 @@ class CategoryGridItem extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Container(
-                padding: EdgeInsets.all(6.0),
+                padding: const EdgeInsets.all(6.0),
                 child: Center(
                   child: Text(
                     category.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
