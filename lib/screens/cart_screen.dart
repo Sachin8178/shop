@@ -29,7 +29,7 @@ class _CartScreenState extends State<CartScreen> {
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
             return SingleChildScrollView(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -40,7 +40,9 @@ class _CartScreenState extends State<CartScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+
                   SizedBox(height: 20),
+                  Divider(thickness: 1, color: Color(0xFFE2E2E2)),
                   buildCheckoutOption(
                     title: 'Delivery Method',
                     subtitle: 'Select method',
@@ -49,14 +51,19 @@ class _CartScreenState extends State<CartScreen> {
                       // Navigate to delivery method selection screen
                     },
                   ),
+                  Divider(thickness: 1, color: Color(0xFFE2E2E2)),
                   buildCheckoutOption(
                     title: 'Payment',
-                    subtitle: 'Select method',
-                    amount: 'Select method',
+                    subtitle: '',
+                    amount: '',
+                    icon: ImageIcon(
+                      AssetImage('assets/icon_images/card.png'),
+                    ),
                     onTap: () {
                       // Navigate to payment method selection screen
                     },
                   ),
+                  Divider(thickness: 1, color: Color(0xFFE2E2E2)),
                   buildCheckoutOption(
                     title: 'Promo code',
                     subtitle: 'Pick discount',
@@ -65,6 +72,7 @@ class _CartScreenState extends State<CartScreen> {
                       // Navigate to promo code selection screen
                     },
                   ),
+                  Divider(thickness: 1, color: Color(0xFFE2E2E2)),
                   buildCheckoutOption(
                     title: 'Total Cost',
                     subtitle: '',
@@ -73,43 +81,48 @@ class _CartScreenState extends State<CartScreen> {
                       // Navigate to total cost details screen
                     },
                   ),
+                  Divider(thickness: 1, color: Color(0xFFE2E2E2)),
                   SizedBox(height: 20),
-                  // Checkbox for Terms And Conditions
-                  CheckboxListTile(
-                    title: Text(
-                      'By placing an order you agree to our Terms and Conditions',
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
+                  // Terms and Conditions text
+                  RichText(
+                    text: TextSpan(
+                      text: 'By placing an order you agree to our \n',
+                      style: TextStyle(color: Color(0xFF7C7C7C)),
+                      children: [
+                        TextSpan(
+                          text: 'Terms',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: ' And ',
+                        ),
+                        TextSpan(
+                          text: 'Conditions',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.black),
+                        ),
+                      ],
                     ),
-                    value: _agreedToTerms,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        _agreedToTerms = value ?? false;
-                      });
-                    },
-                    controlAffinity: ListTileControlAffinity.leading,
                   ),
                   SizedBox(height: 20),
                   // Button to place order
                   Center(
                     child: ElevatedButton(
-                      onPressed: _agreedToTerms
-                          ? () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ConfirmationScreen(),
-                                ),
-                              );
-                            }
-                          : null,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ConfirmationScreen(),
+                          ),
+                        );
+                      },
                       child: Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                         child: Text(
                           'Place Order',
-                          style: TextStyle(fontSize: 18),
+                          style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
@@ -135,30 +148,32 @@ class _CartScreenState extends State<CartScreen> {
     required String title,
     required String subtitle,
     required String amount,
+    Widget? icon,
     VoidCallback? onTap,
   }) {
     return ListTile(
       title: Text(
         title,
         style: TextStyle(
-          //fontWeight: FontWeight.bold,
           color: Color.fromARGB(255, 103, 101, 101), // Main text color
         ),
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (amount.isNotEmpty) ...[
-            Text(
-              amount,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: const Color.fromARGB(255, 7, 7, 7),
-                fontSize: 15,
-              ),
-            ),
+          if (icon != null) ...[
+            icon, // Icon widget for payment option
             SizedBox(width: 10),
           ],
+          Text(
+            amount,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: const Color.fromARGB(255, 7, 7, 7),
+              fontSize: 15,
+            ),
+          ),
+          SizedBox(width: 10),
           Icon(Icons.arrow_forward_ios),
         ],
       ),
@@ -189,7 +204,6 @@ class _CartScreenState extends State<CartScreen> {
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
-                          //Divider(),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: Dismissible(
@@ -198,7 +212,6 @@ class _CartScreenState extends State<CartScreen> {
                               background: Container(
                                 alignment: Alignment.centerRight,
                                 padding: EdgeInsets.only(right: 20.0),
-                                //color: Colors.red,
                                 child: Image.asset(
                                   'assets/images/cross.png', // Replace with your cross image path
                                   color: Colors.white,
@@ -214,14 +227,12 @@ class _CartScreenState extends State<CartScreen> {
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(10),
-                                  //boxShadow: [],
                                 ),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     // Display product image
                                     ClipRRect(
-                                      //borderRadius: BorderRadius.circular(10.0),
                                       child: Image.asset(
                                         widget.cartItems[index].image,
                                         width: 80,
@@ -249,10 +260,9 @@ class _CartScreenState extends State<CartScreen> {
                                             SizedBox(
                                                 height:
                                                     1), // Adding space below the product name
-
                                             // Display quantity and price
                                             Text(
-                                              '${widget.cartItems[index].quantity},Price',
+                                              '${widget.cartItems[index].quantity}, Price',
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 color: Colors.grey,
@@ -261,7 +271,6 @@ class _CartScreenState extends State<CartScreen> {
                                             SizedBox(
                                                 height:
                                                     15), // Adding smaller space below the quantity
-
                                             // Display quantity selector and price
                                             Row(
                                               mainAxisAlignment:
@@ -287,7 +296,6 @@ class _CartScreenState extends State<CartScreen> {
                                         ),
                                       ),
                                     ),
-
                                     // Delete button for removing item from cart
                                     IconButton(
                                       icon: Image.asset(
@@ -341,7 +349,7 @@ class _CartScreenState extends State<CartScreen> {
                       minimumSize: Size(double.infinity, 60),
                       backgroundColor: Color(0xff8E97FD),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(11),
                       ),
                     ),
                   ),
